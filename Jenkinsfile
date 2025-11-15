@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                git 'https://github.com/Cherifa3/jenkins-pipeline-without-helm.git'
+                git branch: 'main', 
+                url: 'https://github.com/Cherifa3/jenkins-pipeline-without-helm.git'
             }
         }
         stage('Construire Image Docker') {
