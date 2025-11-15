@@ -6,17 +6,17 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                git 'https://github.com/cherifa3/jenkins-pipeline-without-helm.git'
+                git 'https://github.com/Cherifa3/jenkins-pipeline-without-helm.git'
             }
         }
-        stage('Construire l\\'image Docker') {
+        stage('Construire Image Docker') {
             steps {
                 script {
                     sh 'docker build -t $DOCKER_IMAGE .'
                 }
             }
         }
-        stage('Pousser l\\'image Docker') {
+        stage('Pousser Image Docker') {
             steps {
                 script {
                     withCredentials([usernamePassword(
