@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'cherifa3/mon-app'
+        DOCKER_HOST = 'unix:///var/run/docker.sock'
     }
     stages {
         stage('Cloner le dépôt') {
@@ -13,7 +14,9 @@ pipeline {
         stage('Construire Image Docker') {
             steps {
                 script {
-                    sh 'docker build -t $DOCKER_IMAGE .'
+                    sh '''
+                        docker build -t $DOCKER_IMAGE .
+                    '''
                 }
             }
         }
@@ -25,8 +28,10 @@ pipeline {
                         passwordVariable: 'DOCKER_PASSWORD', 
                         usernameVariable: 'DOCKER_USERNAME'
                     )]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                        sh 'docker push $DOCKER_IMAGE'
+                        sh '''
+                            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                            docker push $DOCKER_IMAGE
+                        '''
                     }
                 }
             }
