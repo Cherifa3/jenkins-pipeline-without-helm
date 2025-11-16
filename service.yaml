@@ -7,6 +7,6 @@ spec:
     app: mon-app
   ports:
     - protocol: TCP
-      port: 80        # port du service dans le cluster
-      targetPort: 80  # port du container nginx
-  type: NodePort
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
