@@ -14,12 +14,18 @@ pipeline {
         stage('Construire Image Docker') {
             steps {
                 script {
-                    sh ' docker build -t $DOCKER_IMAGE .'
-                    
-        stage('Pousser límage Docker') {
-            steps 
-                script 
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')])
+                    sh 'docker build -t $DOCKER_IMAGE .'
+                }
+            }
+        }
+        stage('Pousser l\\'image Docker') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'dockerhub-creds', 
+                        passwordVariable: 'DOCKER_PASSWORD', 
+                        usernameVariable: 'DOCKER_USERNAME'
+                    )]) {
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                         sh 'docker push $DOCKER_IMAGE'
                     }
