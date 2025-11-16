@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-        stage('Pousser l\\'image Docker') {
+        stage('Pousser limage Docker') {
             steps {
                 script {
                     withCredentials([usernamePassword(
