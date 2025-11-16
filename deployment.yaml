@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
       - name: mon-app
-        image: cherifa3/mon-app:latest
-        imagePullPolicy: Always
+        image: cherifa3/mon-app
         ports:
         - containerPort: 80
-
